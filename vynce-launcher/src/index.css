@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* optional smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Fade overlay */
+.fade-out-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(80% 80% at 50% 50%, rgba(0,255,255,0.12) 0%, rgba(0,0,0,0.9) 60%, rgba(0,0,0,1) 100%);
+  animation: vynce-fade 300ms ease forwards;
+  pointer-events: none;
+  z-index: 60;
+}
+
+@keyframes vynce-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Warp overlay with scanline */
+.warp-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0,240,255,0.25) 0%, rgba(255,107,219,0.15) 35%, rgba(15,16,32,0.95) 70%);
+  filter: blur(1px);
+  animation: vynce-warp 500ms cubic-bezier(.2,.6,.2,1) forwards;
+  pointer-events: none;
+  z-index: 70;
+}
+
+@keyframes vynce-warp {
+  0%   { transform: scale(1) translateZ(0); opacity: .8; }
+  60%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Signature diagonal scanline sweep */
+.scanline {
+  position: absolute;
+  top: -30%;
+  left: -10%;
+  width: 120%;
+  height: 60%;
+  background: linear-gradient( to bottom right,
+    rgba(255,255,255,0) 0%,
+    rgba(0,240,255,0.18) 45%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,107,219,0.18) 55%,
+    rgba(255,255,255,0) 100% );
+  transform: rotate(12deg);
+  filter: blur(8px);
+  animation: vynce-scan 500ms ease forwards;
+  mix-blend-mode: screen;
+}
+
+@keyframes vynce-scan {
+  0% { transform: translateY(-40vh) rotate(12deg); opacity: 0.0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(12deg); opacity: 0; }
+}
