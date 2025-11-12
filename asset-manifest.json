@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sainova.vynce.co.in/static/css/main.261b307e.css",
+    "main.js": "/sainova.vynce.co.in/static/js/main.5a0783da.js",
+    "static/js/453.c930e146.chunk.js": "/sainova.vynce.co.in/static/js/453.c930e146.chunk.js",
+    "index.html": "/sainova.vynce.co.in/index.html",
+    "main.261b307e.css.map": "/sainova.vynce.co.in/static/css/main.261b307e.css.map",
+    "main.5a0783da.js.map": "/sainova.vynce.co.in/static/js/main.5a0783da.js.map",
+    "453.c930e146.chunk.js.map": "/sainova.vynce.co.in/static/js/453.c930e146.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.261b307e.css",
+    "static/js/main.5a0783da.js"
+  ]
+}
