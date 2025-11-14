@@ -109,9 +109,9 @@ useEffect(() => {
 
   return 100;
 }
-          return prev + 1.2;
+          return prev + 4;
         });
-      }, 40);
+      }, 10);
       return () => clearInterval(interval);
     }
   }, [stage, termsAccepted]);
