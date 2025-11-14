@@ -12,6 +12,11 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
+// Message to remove "Cannot GET /"
+app.get("/", (req, res) => {
+  res.send("🚀 Vynce backend is live and connected to MongoDB!");
+});
+
 // Routes
 app.use("/api/launcher", launcherRoutes);
 
