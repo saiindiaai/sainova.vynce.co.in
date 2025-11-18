@@ -1,9 +1,8 @@
-export async function fetchLauncherConfig() {
-  const res = await fetch("https://vynce-backend.onrender.com/api/launcher/config");
-  return await res.json();
-}
+import axios from "axios";
 
-export const createGuest = async () => {
+export const BASE_URL = "https://vynce-backend.onrender.com/api";
+
+export const createGuestAccount = async () => {
   const res = await axios.post(`${BASE_URL}/auth/guest`);
   return res.data;
 };
