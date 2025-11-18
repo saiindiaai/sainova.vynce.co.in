@@ -1,6 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Home, Settings, Shield, FileText, RefreshCw, Sparkles } from 'lucide-react';
 import { fetchLauncherConfig } from './api';
+import { Routes, Route } from "react-router-dom";
+
+// Auth pages
+import Register from "./pages/auth/register";
+import Login from "./pages/auth/login";
+import Username from "./pages/auth/username";
+import DisplayName from "./pages/auth/displayname";
+import AgeCheck from "./pages/auth/agecheck";
+import ParentalPasskey from "./pages/auth/parentalpasskey";
+import Dashboard from "./pages/auth/dashboard";
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<VynceApp />} />
+
+      {/* Auth Screens */}
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/username" element={<Username />} />
+      <Route path="/displayname" element={<DisplayName />} />
+      <Route path="/agecheck" element={<AgeCheck />} />
+      <Route path="/parentalpasskey" element={<ParentalPasskey />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  );
+}
 
 export default function VynceApp() {
   const [launcherConfig, setLauncherConfig] = useState(null);
