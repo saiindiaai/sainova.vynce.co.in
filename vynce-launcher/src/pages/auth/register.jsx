@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Eye, EyeOff, Check, Mail } from 'lucide-react';
+import { createGuestAccount } from "@/api";
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -20,6 +21,19 @@ export default function Register() {
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
+
+const handleGuestAccount = async () => {
+  try {
+    setLoading(true);
+    const res = await createGuestAccount();
+    alert(`Guest account created! VUID: ${res.vuid}`);
+    window.location.href = "/username";
+  } catch (err) {
+    alert("Failed to create guest account.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
