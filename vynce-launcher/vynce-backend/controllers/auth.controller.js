@@ -58,42 +58,47 @@ export const validateSession = async (req, res) => {
   return res.json({ valid: true });
 };
 
-// GUEST ACCOUNT
+// Guest Account
 export const createGuestAccount = async (req, res) => {
-  const guestVuid = Math.floor(10000000 + Math.random() * 90000000);
+  try {
+    const vuid = Math.floor(10000000 + Math.random() * 90000000);
 
-  const user = new User({
-    vuid: guestVuid,
-    isGuest: true,
-  });
+    const guestUser = new User({
+      vuid,
+      username: `guest_${vuid}`,
+      displayName: "Guest User",
+      isGuest: true
+    });
 
-  await user.save();
+    await guestUser.save();
 
-  return res.json({
-    guestVuid,
-    accessToken: crypto.randomUUID(),
-    isGuest: true
-  });
+    return res.json({
+      success: true,
+      vuid,
+      guest: true
+    });
+  } catch (err) {
+    console.error("Guest error:", err);
+    return res.status(500).json({ error: "Guest account failed" });
+  }
 };
 
+// -----------------------------
+// Convert Guest → Full Account
+// -----------------------------
+export const convertGuestAccount = async (req, res) => {
+  const { vuid, email, password } = req.body;
 
-// CONVERT GUEST TO NORMAL USER
-export const convertGuestToUser = async (req, res) => {
-  const { guestVuid, email, password } = req.body;
+  const user = await User.findOne({ vuid });
+  if (!user) return res.status(404).json({ error: "Guest not found" });
 
-  const user = await User.findOne({ vuid: guestVuid });
-  if (!user || !user.isGuest) {
-    return res.status(400).json({ error: "Invalid guest account" });
-  }
+  if (!user.isGuest)
+    return res.status(400).json({ error: "User is already a full account" });
 
   user.email = email;
-  user.password = password; // (hash later)
+  user.password = password;
   user.isGuest = false;
   await user.save();
 
-  return res.json({
-    success: true,
-    converted: true,
-    vuid: guestVuid
-  });
+  return res.json({ success: true, converted: true });
 };

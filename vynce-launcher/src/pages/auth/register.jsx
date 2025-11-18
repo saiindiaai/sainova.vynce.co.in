@@ -217,14 +217,20 @@ export default function Register() {
               </div>
             </div>
 
-            <Button
-              onClick={() => alert('Guest account created! 👤')}
-              variant="outline"
-              className="w-full"
-              size="lg"
-            >
-              Make Guest Account
-            </Button>
+   <Button
+  onClick={async () => {
+    const res = await fetch('https://vynce-backend.onrender.com/api/auth/guest', {
+      method: 'POST'
+    });
+    const data = await res.json();
+    alert(`Guest VUID: ${data.vuid}`);
+  }}
+  variant="outline"
+  className="w-full"
+  size="lg"
+>
+  Make Guest Account
+</Button>>
           </div>
 
           <div className="text-center">

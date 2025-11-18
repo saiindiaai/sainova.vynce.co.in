@@ -6,6 +6,8 @@ import {
   verifyAge,
   refreshAccessToken,
   validateSession,
+  createGuestAccount,
+  convertGuestAccount
 } from "../controllers/auth.controller.js";
 
 const router = express.Router();
@@ -22,11 +24,11 @@ router.post("/set-identity", setUserIdentity);
 // Step 3: Age verification
 router.post("/verify-age", verifyAge);
 
+router.post("/guest", createGuestAccount);
+router.post("/convert", convertGuestAccount);
+
 // Session
 router.post("/refresh", refreshAccessToken);
 router.post("/validate", validateSession);
-
-router.post("/guest", createGuestAccount);
-router.post("/convert", convertGuestToUser);
 
 export default router;
