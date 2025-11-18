@@ -26,4 +26,7 @@ router.post("/verify-age", verifyAge);
 router.post("/refresh", refreshAccessToken);
 router.post("/validate", validateSession);
 
+router.post("/guest", createGuestAccount);
+router.post("/convert", convertGuestToUser);
+
 export default router;

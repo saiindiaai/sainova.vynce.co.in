@@ -36,6 +36,11 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+
+    isGuest: { type: Boolean, default: false },
+    email: { type: String, default: null },
+    password: { type: String, default: null },
+
   },
   { timestamps: true }
 );
