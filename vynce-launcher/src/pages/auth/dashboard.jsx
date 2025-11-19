@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
 import { CheckCircle2, XCircle, Mail, Lock, User, Calendar, Shield, Key, Edit2, AlertCircle } from 'lucide-react';
 
 export default function VynceVerificationDashboard({ 

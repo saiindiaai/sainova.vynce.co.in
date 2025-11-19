@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 import { Eye, EyeOff, Check, Mail } from 'lucide-react';
-import { createGuestAccount } from "@/api";
+import { createGuestAccount } from "../../api";
 
 export default function Register() {
   const [email, setEmail] = useState('');

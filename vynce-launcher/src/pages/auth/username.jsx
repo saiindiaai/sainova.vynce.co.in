@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Check, X, Loader2 } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 
 export default function SetupUsername() {
   const [username, setUsername] = useState('');

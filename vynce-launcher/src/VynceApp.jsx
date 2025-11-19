@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Home, Settings, Shield, FileText, RefreshCw, Sparkles } from 'lucide-react';
-import { fetchLauncherConfig } from './api';
+// src/VynceApp.jsx
+// near top of file, with other imports
+import { Home, Settings, Shield, FileText, RefreshCw, Sparkles } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { fetchLauncherConfig } from "./api";
 
 // Auth pages
 import Register from "./pages/auth/register";
@@ -12,12 +14,37 @@ import AgeCheck from "./pages/auth/agecheck";
 import ParentalPasskey from "./pages/auth/parentalpasskey";
 import Dashboard from "./pages/auth/dashboard";
 
-export default function App() {
+export default function VynceApp() {
+  // =======================
+  // 🔧 GLOBAL STATE
+  // =======================
+  const [launcherConfig, setLauncherConfig] = useState(null);
+  const [stage, setStage] = useState("initial-loading");
+  const [progress, setProgress] = useState(0);
+  const [showContent, setShowContent] = useState(false);
+  const [selectedApp, setSelectedApp] = useState(null);
+  const [activeTab, setActiveTab] = useState("home");
+  const [legalView, setLegalView] = useState(null);
+  const [theme, setTheme] = useState("light");
+  const [resolution, setResolution] = useState("high");
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [showTermsPopup, setShowTermsPopup] = useState(false);
+  const [readingLegal, setReadingLegal] = useState(null);
+  const [fadeOut, setFadeOut] = useState(false);
+  const [warp, setWarp] = useState(false);
+
+  const gradientMap = {
+    "from-blue-500 to-purple-600": "from-blue-500 to-purple-600",
+    "from-pink-500 to-rose-600": "from-pink-500 to-rose-600",
+    "from-cyan-500 to-blue-600": "from-cyan-500 to-blue-600",
+  };
+
+  // ===========================
+  // 🚀 MAIN JSX RETURN
+  // ===========================
   return (
     <Routes>
-      <Route path="/" element={<VynceApp />} />
-
-      {/* Auth Screens */}
+      {/* AUTH FLOW */}
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/username" element={<Username />} />
@@ -25,30 +52,18 @@ export default function App() {
       <Route path="/agecheck" element={<AgeCheck />} />
       <Route path="/parentalpasskey" element={<ParentalPasskey />} />
       <Route path="/dashboard" element={<Dashboard />} />
+
+      {/* MAIN LAUNCHER */}
+      <Route
+        path="/"
+        element={
+          <div className="text-white text-3xl p-10">
+            Launcher UI goes here (Vynce Home Screen)
+          </div>
+        }
+      />
     </Routes>
   );
-}
-
-export default function VynceApp() {
-  const [launcherConfig, setLauncherConfig] = useState(null);
-  const [stage, setStage] = useState('initial-loading');
-  const [progress, setProgress] = useState(0);
-  const [showContent, setShowContent] = useState(false);
-  const [selectedApp, setSelectedApp] = useState(null);
-  const [activeTab, setActiveTab] = useState('home');
-  const [legalView, setLegalView] = useState(null);
-  const [theme, setTheme] = useState('light');
-  const [resolution, setResolution] = useState('high');
-  const [termsAccepted, setTermsAccepted] = useState(false);
-  const [showTermsPopup, setShowTermsPopup] = useState(false);
-  const [readingLegal, setReadingLegal] = useState(null);
-  const [fadeOut, setFadeOut] = useState(false);
-  const [warp, setWarp] = useState(false);
-  const gradientMap = {
-  "from-blue-500 to-purple-600": "from-blue-500 to-purple-600",
-  "from-pink-500 to-rose-600": "from-pink-500 to-rose-600",
-  "from-cyan-500 to-blue-600": "from-cyan-500 to-blue-600",
-};
 
   const themes = {
     light: { 
